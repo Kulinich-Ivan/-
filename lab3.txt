@@ -1,0 +1,60 @@
+Глава 9
+//выводит информацию об идентичности пользователя;
+@Kulinich-Ivan ➜ /workspaces/- (main) $ id
+uid=1000(codespace) gid=1000(codespace) groups=1000(codespace),106(ssh),107(docker),989(pipx),990(python),991(oryx),992(golang),993(sdkman),994(rvm),995(php),996(conda),997(nvs),998(nvm),999(hugo)
+//зменяет режим доступа к файлу;
+@Kulinich-Ivan ➜ /workspaces/- (main) $ sudo chmod o-r Test
+@Kulinich-Ivan ➜ /workspaces/- (main) $ stat Test
+  File: Test
+  Size: 4096            Blocks: 8          IO Block: 4096   directory
+Device: 707h/1799d      Inode: 1310802     Links: 2
+Access: (0773/drwxrwx-wx)  Uid: ( 1000/codespace)   Gid: ( 1000/codespace)
+Access: 2025-02-06 06:35:14.166953729 +0000
+Modify: 2025-02-06 06:33:58.550952665 +0000
+Change: 2025-02-06 06:35:12.874953711 +0000
+ Birth: -
+//— определяет разрешения доступа к файлам по умолчанию;
+@Kulinich-Ivan ➜ /workspaces/- (main) $ umask
+0022
+//выполняет команду от имени другого пользователя
+@Kulinich-Ivan ➜ /workspaces/- (main) $ su u3
+Password: 
+👋 Welcome to Codespaces! You are on our default image. 
+   - It includes runtimes and tools for Python, Node.js, Docker, and more. See the full list here: https://aka.ms/ghcs-default-image
+   - Want to use a custom image instead? Learn more here: https://aka.ms/configure-codespace
+
+🔍 To explore VS Code to its fullest, search using the Command Palette (Cmd/Ctrl + Shift + P or F1).
+
+📝 Edit away, run your app as usual, and we'll automatically make it available for you to access.
+
+rm: cannot remove '/usr/local/share/nvm/current': Permission denied
+u3@codespaces-cc8078:/workspaces/-$ exit
+//изменяет владельца файла;
+@Kulinich-Ivan ➜ /workspaces/- (main) $ sudo useradd u2
+useradd: user 'u2' already exists
+@Kulinich-Ivan ➜ /workspaces/- (main) $ sudo chown u2 Test
+@Kulinich-Ivan ➜ /workspaces/- (main) $ stat Test
+  File: Test
+  Size: 4096            Blocks: 8          IO Block: 4096   directory
+Device: 707h/1799d      Inode: 1310802     Links: 2
+Access: (0773/drwxrwx-wx)  Uid: ( 1001/      u2)   Gid: ( 1000/codespace)
+Access: 2025-02-06 06:48:16.978964747 +0000
+Modify: 2025-02-06 06:33:58.550952665 +0000
+Change: 2025-02-06 06:48:15.682964729 +0000
+ Birth: -
+//изменяет группу файла
+@Kulinich-Ivan ➜ /workspaces/- (main) $ sudo chgrp u6 Test 
+@Kulinich-Ivan ➜ /workspaces/- (main) $ stat Test
+  File: Test
+  Size: 4096            Blocks: 8          IO Block: 4096   directory
+Device: 707h/1799d      Inode: 1310802     Links: 2
+Access: (0773/drwxrwx-wx)  Uid: ( 1001/      u2)   Gid: ( 1004/      u6)
+Access: 2025-02-06 06:48:16.978964747 +0000
+Modify: 2025-02-06 06:33:58.550952665 +0000
+Change: 2025-02-06 07:02:06.470976422 +0000
+ Birth: -
+//изменяет пароль пользователя
+@Kulinich-Ivan ➜ /workspaces/- (main) $ sudo passwd u6
+New password: 
+Retype new password: 
+passwd: password updated successfully
