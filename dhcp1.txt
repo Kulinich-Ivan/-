@@ -1,0 +1,97 @@
+ip
+Router(config-subif)#ip add 192.168.3.254 255.255.255.0
+Router(config-subif)#enc
+Router(config-subif)#encapsulation 
+Router(config-subif)#encapsulation dot1Q 3
+Router(config-subif)#ip add 192.168.3.254 255.255.255.0
+Router(config-subif)#int g0/1.4
+Router(config-subif)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/1.4, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1.4, changed state to u
+Router(config-subif)#encapsulation dot1Q 4
+Router(config-subif)#ip add 192.168.4.254 255.255.255.0
+Router(config-subif)#int g0/1.5
+Router(config-subif)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/1.5, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1.5, changed state to up
+
+pool
+
+Router(dhcp-config)#dns-s
+Router(dhcp-config)#dns-server 8.8.8.8
+Router(dhcp-config)#exit
+Router(config)#ip dhcp pool 
+Router(config)#
+Router(config)#
+Router(config)#
+Router(config)#
+Router(config)#
+Router(config)#router rip
+Router(config-router)#
+Router(config-router)#end
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface GigabitEthernet0/0
+Router(config-if)#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router(config-if)#exit
+Router(config)#interface GigabitEthernet0/1
+Router(config-if)#ip dhcp pool CLASS1
+Router(dhcp-config)#
+Router(dhcp-config)#netw
+% Incomplete command.
+Router(dhcp-config)#netw
+Router(dhcp-config)#network 192.168.3.254
+% Incomplete command.
+Router(dhcp-config)#network 192.168.3.0 255.255.255.0
+Router(dhcp-config)#defaul
+Router(dhcp-config)#default-router 192.168.3.254
+Router(dhcp-config)#dns
+Router(dhcp-config)#dns-server 8.8.8.8
+Router(dhcp-config)#exit
+Router(config)#ip dhcp pool 
+Router(config)#ip dhcp pool CLASS2
+Router(dhcp-config)#
+Router(dhcp-config)#network 192.168.3.0 255.255.255.Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#ip dhcp pool CLASS2
+Router(dhcp-config)#netw
+Router(dhcp-config)#network 192.168.2.0 255.255.255.0
+Router(dhcp-config)#default
+Router(dhcp-config)#default-router 
+% Incomplete command.
+Router(dhcp-config)#dns
+Router(dhcp-config)#dns-server 8.8.8.8
+Router(dhcp-config)#exit
+Router(config)#en 
+% Ambiguous command: "en "
+Router(config)#conf t
+%Invalid hex value
+Router(config)#ip dhcp pool Derector
+Router(dhcp-config)#netw
+Router(dhcp-config)#network 192.168.2.0 255.255.255.0
+Router(dhcp-config)#default
+Router(dhcp-config)#default-router 
+% Incomplete command.
+Router(dhcp-config)#dns
+Router(dhcp-config)#dns-server 8.8.8.8
+Router(dhcp-config)#exit
+Router(config)#ip dhcp pool C
+Router(config)#ip dhcp pool CLASS2
+Router(dhcp-config)#network 192.168.4.0 255.255.255.0
+Router(dhcp-config)#DNS
+Router(dhcp-config)#DNS-server 8.8.8.8
+Router(dhcp-config)#EXIT
+Router(config)#ip dhcp pool Derector
+Router(dhcp-config)#DEF
+Router(dhcp-config)#DEFault-router 192.168.2.254
+Router(dhcp-config)#EXIT
+Router(config)#ip dhcp pool CLASS2
+Router(dhcp-config)#DEFAULT
+Router(dhcp-config)#DEFAULT-router 192.168.4.254
+Router(dhcp-config)#EXIT
+Router(config)#
+
