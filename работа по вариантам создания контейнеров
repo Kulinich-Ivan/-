@@ -1,0 +1,260 @@
+docker search ubuntu@Kulinich-Ivan ➜ /workspaces/- (main) $ docker search ubuntu
+NAME                             DESCRIPTION                                     STARS     OFFICIAL
+ubuntu                           Ubuntu is a Debian-based Linux operating sys…   17516     [OK]
+ubuntu/cortex                    Cortex provides storage for Prometheus. Long…   4         
+ubuntu/squid                     Squid is a caching proxy for the Web. Long-t…   108       
+ubuntu/kafka                     Apache Kafka, a distributed event streaming …   53        
+ubuntu/nginx                     Nginx, a high-performance reverse proxy & we…   128       
+ubuntu/prometheus                Prometheus is a systems and service monitori…   70        
+ubuntu/zookeeper                 ZooKeeper maintains configuration informatio…   13        
+ubuntu/redis                     Redis, an open source key-value store. Long-…   23        
+ubuntu/jre                       Distroless Java runtime based on Ubuntu. Lon…   19        
+ubuntu/apache2                   Apache, a secure & extensible open-source HT…   90        
+ubuntu/bind9                     BIND 9 is a very flexible, full-featured DNS…   102       
+ubuntu/dotnet-aspnet             Chiselled Ubuntu runtime image for ASP.NET a…   26        
+ubuntu/postgres                  PostgreSQL is an open source object-relation…   41        
+ubuntu/mysql                     MySQL open source fast, stable, multi-thread…   67        
+ubuntu/cassandra                 Cassandra, an open source NoSQL distributed …   2         
+ubuntu/python                    A chiselled Ubuntu rock with the Python runt…   20        
+ubuntu/memcached                 Memcached, in-memory keyvalue store for smal…   5         
+ubuntu/dotnet-runtime            Chiselled Ubuntu runtime image for .NET apps…   20        
+ubuntu/prometheus-alertmanager   Alertmanager handles client alerts from Prom…   9         
+ubuntu/grafana                   Grafana, a feature rich metrics dashboard & …   12        
+ubuntu/dotnet-deps               Chiselled Ubuntu for self-contained .NET & A…   16        
+ubuntu/telegraf                  Telegraf collects, processes, aggregates & w…   4         
+ubuntu/loki                      Grafana Loki, a log aggregation system like …   2         
+ubuntu/chiselled-jre             [MOVED TO ubuntu/jre] Chiselled JRE: distrol…   3         
+ubuntu/mlflow                    MLFlow: for managing the machine learning li…   5         
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker pull ubuntu:22.04
+22.04: Pulling from library/ubuntu
+9cb31e2e37ea: Pull complete 
+Digest: sha256:ed1544e454989078f5dec1bfdabd8c5cc9c48e0705d07b678ab6ae3fb61952d2
+Status: Downloaded newer image for ubuntu:22.04
+docker.io/library/ubuntu:22.04
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+ubuntu       22.04     a24be041d957   2 months ago   77.9MB
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker rmi a24be041d957
+Untagged: ubuntu:22.04
+Untagged: ubuntu@sha256:ed1544e454989078f5dec1bfdabd8c5cc9c48e0705d07b678ab6ae3fb61952d2
+Deleted: sha256:a24be041d9576937f62435f8564c2ca6e429d2760537b04c50ca50adb0c6d212
+Deleted: sha256:270a1170e7e398434ff1b31e17e233f7d7b71aa99a40473615860068e86720af
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker run a24be041d957
+Unable to find image 'a24be041d957:latest' locally
+docker: Error response from daemon: pull access denied for a24be041d957, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker pull ubuntu:22.04
+22.04: Pulling from library/ubuntu
+9cb31e2e37ea: Pull complete 
+Digest: sha256:ed1544e454989078f5dec1bfdabd8c5cc9c48e0705d07b678ab6ae3fb61952d2
+Status: Downloaded newer image for ubuntu:22.04
+docker.io/library/ubuntu:22.04
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker run -d a24be041d957
+d3eeeb8ffb53f281453de5b2aac0e3455c60c40b022cad98d7b1684b84322fe2
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker run -it a24be041d957
+root@6518398570da:/# pwd
+/
+root@6518398570da:/# exit
+exit
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker ps -a
+CONTAINER ID   IMAGE          COMMAND       CREATED              STATUS                          PORTS     NAMES
+6518398570da   a24be041d957   "/bin/bash"   54 seconds ago       Exited (0) 14 seconds ago                 epic_bartik
+d3eeeb8ffb53   a24be041d957   "/bin/bash"   About a minute ago   Exited (0) About a minute ago             tender_boyd
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker run -it a24be041d957
+root@3ccdeb1eebb6:/# pwq
+bash: pwq: command not found
+root@3ccdeb1eebb6:/# pwd
+/
+root@3ccdeb1eebb6:/# uname -a
+Linux 3ccdeb1eebb6 6.8.0-1021-azure #25~22.04.1-Ubuntu SMP Thu Jan 16 21:37:09 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+root@3ccdeb1eebb6:/# exit
+exit
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker ps -a
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS                     PORTS     NAMES
+3ccdeb1eebb6   a24be041d957   "/bin/bash"   54 seconds ago   Exited (0) 7 seconds ago             dreamy_almeida
+6518398570da   a24be041d957   "/bin/bash"   2 minutes ago    Exited (0) 2 minutes ago             epic_bartik
+d3eeeb8ffb53   a24be041d957   "/bin/bash"   3 minutes ago    Exited (0) 3 minutes ago             tender_boyd
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker run -it httpd
+Unable to find image 'httpd:latest' locally
+latest: Pulling from library/httpd
+6e909acdb790: Pull complete 
+9f9b03a66afb: Pull complete 
+4f4fb700ef54: Pull complete 
+09bf08b13dbd: Pull complete 
+084c58879b9a: Pull complete 
+c61868f0ad74: Pull complete 
+Digest: sha256:391a8eb0c1ed464163da46099606a5ec293705118f3054d6c60f5957e2485bd0
+Status: Downloaded newer image for httpd:latest
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+[Fri Mar 28 08:53:12.158022 2025] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.63 (Unix) configured -- resuming normal operations
+[Fri Mar 28 08:53:12.158137 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: 'httpd -D FOREGROUND'
+^C[Fri Mar 28 08:54:18.402251 2025] [mpm_event:notice] [pid 1:tid 1] AH00491: caught SIGTERM, shutting down
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker run -it alt
+Unable to find image 'alt:latest' locally
+latest: Pulling from library/alt
+50159fc3f76b: Pull complete 
+305aa293179e: Pull complete 
+Digest: sha256:038031df9afd7e2763c01015933957bd0565666f598b0611c0fa51c6a1797594
+Status: Downloaded newer image for alt:latest
+[root@4bdc0a04c910 /]# exit
+exit
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker run -it fedora
+Unable to find image 'fedora:latest' locally
+latest: Pulling from library/fedora
+510231d94cd9: Pull complete 
+Digest: sha256:f84a7b765ce09163d11de44452a4b56c1b2f5571b6f640b3b973c6afc4e63212
+Status: Downloaded newer image for fedora:latest
+[root@26745973f346 /]# exit
+exit
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker run -it clearlinux
+Unable to find image 'clearlinux:latest' locally
+latest: Pulling from library/clearlinux
+9f97b20b7e62: Pull complete 
+490f853bf4a8: Pull complete 
+Digest: sha256:649b29eca8296b9b05f18136080165ff42d1d010881fdc68fafa3ee70ac6c3aa
+Status: Downloaded newer image for clearlinux:latest
+root@7edc857689f8/ # exit
+exit
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker ps -a
+CONTAINER ID   IMAGE          COMMAND              CREATED              STATUS                          PORTS     NAMES
+7edc857689f8   clearlinux     "/bin/bash"          About a minute ago   Exited (0) 50 seconds ago                 youthful_tu
+26745973f346   fedora         "/bin/bash"          3 minutes ago        Exited (0) About a minute ago             vibrant_hertz
+4bdc0a04c910   alt            "/bin/bash"          4 minutes ago        Exited (0) 4 minutes ago                  elegant_pasteur
+d4526f20ba1a   httpd          "httpd-foreground"   6 minutes ago        Exited (0) 5 minutes ago                  frosty_turing
+3ccdeb1eebb6   a24be041d957   "/bin/bash"          8 minutes ago        Exited (0) 7 minutes ago                  dreamy_almeida
+6518398570da   a24be041d957   "/bin/bash"          10 minutes ago       Exited (0) 9 minutes ago                  epic_bartik
+d3eeeb8ffb53   a24be041d957   "/bin/bash"          10 minutes ago       Exited (0) 10 minutes ago                 tender_boyd
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker run -it apache
+Unable to find image 'apache:latest' locally
+docker: Error response from daemon: pull access denied for apache, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker run -it mysql
+Unable to find image 'mysql:latest' locally
+latest: Pulling from library/mysql
+804bb8ae89de: Pull complete 
+1b515e7ceb69: Pull complete 
+eaa11c0a9f08: Pull complete 
+8d18181893b8: Pull complete 
+e0a910cc8604: Pull complete 
+bc0c792ca096: Pull complete 
+8d73d2a73425: Pull complete 
+4a7e00d873b9: Pull complete 
+27a2553d6a80: Pull complete 
+69e76254f502: Pull complete 
+Digest: sha256:9b9d0aab4860798acff13d2a0ece3bc26639fe18b83fa5cd3e3d0e16b3ed05dd
+Status: Downloaded newer image for mysql:latest
+2025-03-28 09:01:30+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 9.2.0-1.el9 started.
+2025-03-28 09:01:31+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2025-03-28 09:01:31+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 9.2.0-1.el9 started.
+2025-03-28 09:01:31+00:00 [ERROR] [Entrypoint]: Database is uninitialized and password option is not specified
+    You need to specify one of the following as an environment variable:
+    - MYSQL_ROOT_PASSWORD
+    - MYSQL_ALLOW_EMPTY_PASSWORD
+    - MYSQL_RANDOM_ROOT_PASSWORD
+@Kulinich-Ivan ➜ /workspaces/- (main) $ docker run -it xwiki
+Unable to find image 'xwiki:latest' locally
+latest: Pulling from library/xwiki
+5a7813e071bf: Pull complete 
+5ab21fde7f67: Pull complete 
+24e1027cc04a: Pull complete 
+eb109d1b0266: Pull complete 
+2f09a3412655: Pull complete 
+e8d920e1ad43: Pull complete 
+4f4fb700ef54: Pull complete 
+bf57f078e9a3: Pull complete 
+e83078856c2b: Pull complete 
+4bae9e5385ae: Pull complete 
+0b8fdd926f24: Pull complete 
+89bdbfb0b601: Pull complete 
+a83fe9494406: Pull complete 
+2e99f11e7acf: Pull complete 
+9dfe0179ad10: Pull complete 
+3567976e0296: Pull complete 
+Digest: sha256:22cee1a116338578771c5d9940434be242bdd1fb8a46aa5702c16dd874ddbb1a
+Status: Downloaded newer image for xwiki:latest
+Configuring XWiki...
+Setting environment variables
+  Deploying XWiki in the 'ROOT' context
+Replacing environment variables in files
+  Setting permanent directory...
+  Configure libreoffice...
+Using CATALINA_BASE:   /usr/local/tomcat
+Using CATALINA_HOME:   /usr/local/tomcat
+Using CATALINA_TMPDIR: /usr/local/tomcat/temp
+Using JRE_HOME:        /opt/java/openjdk
+Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
+Using CATALINA_OPTS:   
+28-Mar-2025 09:02:15.662 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.39
+28-Mar-2025 09:02:15.677 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Mar 4 2025 19:02:32 UTC
+28-Mar-2025 09:02:15.678 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.39.0
+28-Mar-2025 09:02:15.679 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+28-Mar-2025 09:02:15.679 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            6.8.0-1021-azure
+28-Mar-2025 09:02:15.679 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+28-Mar-2025 09:02:15.680 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /opt/java/openjdk
+28-Mar-2025 09:02:15.681 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           21.0.6+7-LTS
+28-Mar-2025 09:02:15.681 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Eclipse Adoptium
+28-Mar-2025 09:02:15.682 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /usr/local/tomcat
+28-Mar-2025 09:02:15.683 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /usr/local/tomcat
+28-Mar-2025 09:02:15.739 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties
+28-Mar-2025 09:02:15.743 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+28-Mar-2025 09:02:15.743 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xmx1024m
+28-Mar-2025 09:02:15.743 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
+28-Mar-2025 09:02:15.744 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.connector.CoyoteAdapter.ALLOW_BACKSLASH=true
+28-Mar-2025 09:02:15.744 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.security.egd=file:/dev/./urandom
+28-Mar-2025 09:02:15.744 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+28-Mar-2025 09:02:15.744 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+28-Mar-2025 09:02:15.745 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.io.useCanonCaches=false
+28-Mar-2025 09:02:15.746 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+28-Mar-2025 09:02:15.748 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+28-Mar-2025 09:02:15.748 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+28-Mar-2025 09:02:15.748 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+28-Mar-2025 09:02:15.749 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+28-Mar-2025 09:02:15.749 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+28-Mar-2025 09:02:15.749 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+28-Mar-2025 09:02:15.750 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/usr/local/tomcat
+28-Mar-2025 09:02:15.751 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/usr/local/tomcat
+28-Mar-2025 09:02:15.751 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/usr/local/tomcat/temp
+28-Mar-2025 09:02:15.762 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded Apache Tomcat Native library [2.0.8] using APR version [1.7.2].
+28-Mar-2025 09:02:15.772 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 3.0.13 30 Jan 2024]
+28-Mar-2025 09:02:16.301 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+28-Mar-2025 09:02:16.329 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [916] milliseconds
+28-Mar-2025 09:02:16.396 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+28-Mar-2025 09:02:16.397 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/10.1.39]
+28-Mar-2025 09:02:16.418 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/usr/local/tomcat/webapps/ROOT]
+2025-03-28 09:02:22,739 [main] INFO  iPropertiesConfigurationSource - Loading [xwiki.properties] from [file:/usr/local/tomcat/webapps/ROOT/WEB-INF/xwiki.properties] 
+2025-03-28 09:02:24,557 [main] INFO  iPropertiesConfigurationSource - Loading [xwiki.properties] from [file:/usr/local/tomcat/webapps/ROOT/WEB-INF/xwiki.properties] 
+2025-03-28 09:02:24,571 [main] INFO  o.x.e.i.ServletEnvironment     - Using permanent directory [/usr/local/xwiki/data] 
+2025-03-28 09:02:28,607 [main] WARN  .e.r.m.i.MavenExtensionScanner - Collision between core extension [commons-codec:commons-codec/1.17.1 (jar:file:/usr/local/tomcat/lib/jakartaee-migration-1.0.9-shaded.jar!/META-INF/maven/commons-codec/commons-codec/pom.xml)] and [commons-codec:commons-codec/1.18.0 (file:/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/commons-codec-1.18.0.xed)] 
+2025-03-28 09:02:28,608 [main] WARN  .e.r.m.i.MavenExtensionScanner - [commons-codec:commons-codec/1.18.0 (file:/usr/local/tomcat/webapps/ROOT/WEB-INF/lib/commons-codec-1.18.0.xed)] is selected 
+2025-03-28 09:02:30,680 [main] INFO  o.x.s.s.i.EmbeddedSolr         - Generating a new Solr home directory at [/usr/local/xwiki/data/store/solr] 
+2025-03-28 09:02:30,774 [main] INFO  o.x.s.s.i.EmbeddedSolr         - Starting embedded Solr server... 
+2025-03-28 09:02:30,774 [main] INFO  o.x.s.s.i.EmbeddedSolr         - Using Solr home directory: [/usr/local/xwiki/data/store/solr] 
+2025-03-28 09:02:32,229 [main] WARN  o.a.s.c.CoreContainer          - Not all security plugins configured!  authentication=disabled authorization=disabled.  Solr is only as secure as you make it. Consider configuring authentication/authorization before exposing Solr to users internal or external.  See https://s.apache.org/solrsecurity for more info 
+28-Mar-2025 09:02:33.920 INFO [coreLoadExecutor-11-thread-1] org.apache.lucene.store.MemorySegmentIndexInputProvider.<init> Using MemorySegmentIndexInput with Java 21; to disable start with -Dorg.apache.lucene.store.MMapDirectory.enableMemorySegments=false
+2025-03-28 09:02:35,732 [main] INFO  o.x.s.s.i.EmbeddedSolr         - Started embedded Solr server. 
+2025-03-28 09:02:41,048 [main] INFO  o.x.s.f.i.FilesystemStoreTools - Using filesystem store directory [/usr/local/xwiki/data/store/file] 
+2025-03-28 09:02:41,626 [main] INFO  o.x.o.i.s.DefaultOfficeServer  - Open Office instance started. 
+28-Mar-2025 09:02:41.811 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/usr/local/tomcat/webapps/ROOT] has finished in [25,389] ms
+28-Mar-2025 09:02:41.824 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+28-Mar-2025 09:02:41.869 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [25538] milliseconds
+2025-03-28 09:02:43,198 [jodconverter-offprocmng-0] WARN  tartProcessAndConnectRetryable - Office process died with exit code 81; restarting it 
+^C28-Mar-2025 09:03:08.129 INFO [Thread-18] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+28-Mar-2025 09:03:08.133 INFO [Thread-18] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+2025-03-28 09:03:08,298 [Thread-18] INFO  o.x.o.i.s.DefaultOfficeServer  - Open Office instance stopped. 
+28-Mar-2025 09:03:08.482 WARNING [Thread-18] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [ROOT] appears to have started a thread named [RxCachedWorkerPoolEvictor-1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(Unknown Source)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(Unknown Source)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(Unknown Source)
+ java.base/java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ java.base/java.lang.Thread.run(Unknown Source)
+28-Mar-2025 09:03:08.488 SEVERE [Thread-18] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalMapForLeaks The web application [ROOT] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@2409f8da]) and a value of type [org.codehaus.plexus.classworlds.realm.ClassRealm] (value [ClassRealm[plexus.core, parent: null]]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.
+28-Mar-2025 09:03:08.522 INFO [Thread-18] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+28-Mar-2025 09:03:08.535 INFO [Thread-18] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+@Kulinich-Ivan ➜ /workspaces/- (main) $ 
