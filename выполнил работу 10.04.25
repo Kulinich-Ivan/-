@@ -1,0 +1,110 @@
+
+u02@u02-VirtualBox:~$ docker network ls
+NETWORK ID     NAME           DRIVER    SCOPE
+7eb3a23810bd   bridge         bridge    local
+cf4ed7746d5d   host           host      local
+dd20b1f444dc   none           null      local
+bf4809125919   prg2_default   bridge    local
+
+
+u02@u02-VirtualBox:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:c1:5c:da brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 85212sec preferred_lft 85212sec
+    inet6 fe80::324d:e1c0:aac9:77dd/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:9c:15:af brd ff:ff:ff:ff:ff:ff
+    inet 192.168.2.1/24 brd 192.168.2.255 scope global noprefixroute enp0s8
+       valid_lft forever preferred_lft forever
+    inet6 fe80::54c8:d401:f2d3:5211/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+4: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether de:83:91:57:aa:10 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+5: br-bf4809125919: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 
+    link/ether 9e:9c:d1:9a:6a:fb brd ff:ff:ff:ff:ff:ff
+    inet 172.18.0.1/16 brd 172.18.255.255 scope global br-bf4809125919
+       valid_lft forever preferred_lft forever
+    inet6 fe80::9c9c:d1ff:fe9a:6afb/64 scope link 
+       valid_lft forever preferred_lft forever
+6: vethc34679c@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-bf4809125919 state UP group default 
+    link/ether ba:06:f6:46:3a:65 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet6 fe80::b806:f6ff:fe46:3a65/64 scope link 
+       valid_lft forever preferred_lft forever
+7: veth72e8f9f@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-bf4809125919 state UP group default 
+    link/ether 3e:b0:5d:3e:7b:8c brd ff:ff:ff:ff:ff:ff link-netnsid 1
+    inet6 fe80::3cb0:5dff:fe3e:7b8c/64 scope link 
+       valid_lft forever preferred_lft forever
+
+
+u02@u02-VirtualBox:~$ docker network create -d bridge my_bridge
+c38c3d36688fa6e57e16e916084b9cef8ff1b8d54fda3e6949420af84a0c1b70
+
+u02@u02-VirtualBox:~$ docker network ls
+NETWORK ID     NAME           DRIVER    SCOPE
+7eb3a23810bd   bridge         bridge    local
+cf4ed7746d5d   host           host      local
+c38c3d36688f   my_bridge      bridge    local
+dd20b1f444dc   none           null      local
+bf4809125919   prg2_default   bridge    local
+
+создаем 1 подсеть
+u02@u02-VirtualBox:~$ docker network create -d bridge --subnet 192.168.14.0/26 --gateway 192.168.14.1 my192_N1
+68bf5cd2188c576e69e1fbce49066297e7c02c2c317d272149901e722f6c5c5e
+
+создаем 2 подсеть
+u02@u02-VirtualBox:~$ docker network create -d bridge --subnet 192.168.14.64/26 --gateway 192.168.14.65 my192_N2
+55bfa29fca8bf07723d4c04b23b55551cee844b33c5a180d4070b2cf53cd72b7
+
+создаем 3 подсеть
+02@u02-VirtualBox:~$ docker network create -d bridge --subnet 192.168.14.128/27 --gateway 192.168.14.129 my192_N3
+54ffeda866658e48ad892b929f757b53873b9cfd439586a430077ed1920b3032
+
+создаем 4 подсеть
+u02@u02-VirtualBox:~$ docker network create -d bridge --subnet 192.168.14.160/28 --gateway 192.168.14.161 my192_N4
+14cefe9cc34333726862547181b62e227674ccf7e4d0e13a1fc148dc97c9ae05
+
+создаем для my_bridge 
+u02@u02-VirtualBox:~$ docker run -itd --net my_bridge --name cont1 --rm alpine
+81757776eac8330ae85701c5734fa4e185892d9c130a72237b3daa9c88e45eb3
+u02@u02-VirtualBox:~$ docker run -itd --net my_bridge --name cont2 --rm alpine
+7df46c3420d916611ef4087fdd1608f840aedf0b3f050cc9b1e4c862f7486a3c
+
+
+u02@u02-VirtualBox:~$ docker ps
+CONTAINER ID   IMAGE           COMMAND                  CREATED              STATUS              PORTS      NAMES
+7df46c3420d9   alpine          "/bin/sh"                41 seconds ago       Up 38 seconds                  cont2
+81757776eac8   alpine          "/bin/sh"                About a minute ago   Up About a minute              cont1
+35e4fc38b6c3   alpine          "/bin/sh"                58 minutes ago       Up 57 minutes                  cont_172_18_2
+ea60965a4bcc   alpine          "/bin/sh"                About an hour ago    Up About an hour               cont_172_18
+de5763bbab70   mariadb:10.11   "docker-entrypoint.s…"   12 days ago          Up 2 hours          3306/tcp   prg2_db1_1
+6bcf1c3f4812   mariadb:10.11   "docker-entrypoint.s…"   13 days ago          Up 2 hours          3306/tcp   prg2_db_1
+
+создаем для bridge
+u02@u02-VirtualBox:~$ docker run -itd --net bridge --name cont3 --rm alpine
+e35f6ab278c3522a136d5376390eb21393178f7d4a9493febf1ee88cb6530a1e
+u02@u02-VirtualBox:~$ docker run -itd --net bridge --name cont4 --rm alpine
+abff00fa54658cc96cc599eeec8ebd1ef19c73afa8f2304dae3495456f3a4922
+
+u02@u02-VirtualBox:~$ docker ps
+CONTAINER ID   IMAGE           COMMAND                  CREATED              STATUS              PORTS      NAMES
+abff00fa5465   alpine          "/bin/sh"                About a minute ago   Up About a minute              cont4
+e35f6ab278c3   alpine          "/bin/sh"                About a minute ago   Up About a minute              cont3
+7df46c3420d9   alpine          "/bin/sh"                4 minutes ago        Up 4 minutes                   cont2
+81757776eac8   alpine          "/bin/sh"                5 minutes ago        Up 5 minutes                   cont1
+35e4fc38b6c3   alpine          "/bin/sh"                About an hour ago    Up About an hour               cont_172_18_2
+ea60965a4bcc   alpine          "/bin/sh"                About an hour ago    Up About an hour               cont_172_18
+de5763bbab70   mariadb:10.11   "docker-entrypoint.s…"   12 days ago          Up 2 hours          3306/tcp   prg2_db1_1
+6bcf1c3f4812   mariadb:10.11   "docker-entrypoint.s…"   13 days ago          Up 2 hours          3306/tcp   prg2_db_1
+
+
+Доделать!!!!!!!!
