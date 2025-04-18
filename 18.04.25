@@ -1,0 +1,58 @@
+
+
+Я выполнил работу по установке докера на сервер
+потом подключил 2 контейнера nginx и mysql
+
+u02@u02-VirtualBox:~$ sudo systemctl status docker 
+[sudo] пароль для u02: 
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset>
+     Active: active (running) since Fri 2025-04-18 13:56:31 +07; 1h 31min ago
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 1014 (dockerd)
+      Tasks: 10
+     Memory: 17.2M
+        CPU: 3.461s
+     CGroup: /system.slice/docker.service
+             └─1014 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/cont>
+
+апр 18 13:56:10 u02-VirtualBox dockerd[1014]: time="2025-04-18T13:56:10.2694286>
+апр 18 13:56:16 u02-VirtualBox dockerd[1014]: time="2025-04-18T13:56:16.0694814>
+апр 18 13:56:16 u02-VirtualBox dockerd[1014]: time="2025-04-18T13:56:16.8367147>
+апр 18 13:56:19 u02-VirtualBox dockerd[1014]: time="2025-04-18T13:56:19.0882531>
+апр 18 13:56:21 u02-VirtualBox dockerd[1014]: time="2025-04-18T13:56:21.3640598>
+апр 18 13:56:21 u02-VirtualBox dockerd[1014]: time="2025-04-18T13:56:21.4105428>
+апр 18 13:56:31 u02-VirtualBox dockerd[1014]: time="2025-04-18T13:56:31.8176031>
+апр 18 13:56:31 u02-VirtualBox dockerd[1014]: time="2025-04-18T13:56:31.9605077>
+апр 18 13:56:31 u02-VirtualBox dockerd[1014]: time="2025-04-18T13:56:31.9610005>
+апр 18 13:56:31 u02-VirtualBox systemd[1]: Started Docker Application Container>
+
+
+http://192.168.2.10/
+Welcome to nginx!
+
+If you see this page, the nginx web server is successfully installed and working. Further configuration is required.
+
+For online documentation and support please refer to nginx.org.
+Commercial support is available at nginx.com.
+
+Thank you for using nginx.
+
+
+
+u02@u02-VirtualBox:~$ mysql -h 192.168.2.10 -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 9.3.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+
